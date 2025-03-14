@@ -12,14 +12,15 @@ namespace Progetto_BE_S5L5.Controllers
             _verbaleServices = verbaleServices;
         }
 
-
+        
 
         public async Task<IActionResult> Index()
         {
             ViewBag.Violazioni = await _verbaleServices.GetViolation();
-
+            
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> AddVerbale(VerbaleViewModel verbViewModel)
         {

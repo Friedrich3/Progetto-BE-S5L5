@@ -16,6 +16,7 @@ namespace Progetto_BE_S5L5.Controllers
         public async Task<IActionResult> Index()
         {
             var Lista = await _violazioneServices.GetAll();
+            ViewBag.Ruolo = await _violazioneServices.GetRole();
 
             return View(Lista);
         }
@@ -27,6 +28,13 @@ namespace Progetto_BE_S5L5.Controllers
             {
                 TempData["Error"] = "Errore nel Notifica dell'ordine ";
             }
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> DeleteViol(Guid verbaleId)
+        {
+            var isDeleted = await _violazioneServices.DeleteViolazione(verbaleId);
+
             return RedirectToAction("Index");
         }
     }
