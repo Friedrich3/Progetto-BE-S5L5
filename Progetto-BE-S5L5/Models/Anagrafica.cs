@@ -13,23 +13,24 @@ public partial class Anagrafica
     [Key]
     [Column("idanagrafica")]
     public Guid Idanagrafica { get; set; }
-
+    [Required]
     [StringLength(50)]
     public string Cognome { get; set; } = null!;
-
+    [Required]
     [StringLength(50)]
     public string Nome { get; set; } = null!;
-
+    [Required]
     [StringLength(200)]
     [Unicode(false)]
     public string Indirizzo { get; set; } = null!;
-
+    [Required]
     [StringLength(30)]
     [Unicode(false)]
     public string Citta { get; set; } = null!;
-
-    public int Cap { get; set; }
-
+    [Required]
+    [StringLength(5)]
+    public string? Cap { get; set; }
+    [Required]
     [Column("Codice_Fiscale")]
     [StringLength(16)]
     [Unicode(false)]

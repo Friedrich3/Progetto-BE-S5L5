@@ -1,5 +1,68 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ViolazioneViewModel;
 @{
+    ViewData["Title"] = "violazioni";
 }
+
+<div class="container p-0">
+    <div class="d-flex justify-content-between">
+        <h2>Violazioni</h2>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Persona</th>
+                    <th>Codice Fiscale</th>
+                    <th>Violazioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ViolList != null && Model.ViolList.Any())
+                {
+                    foreach (var item in Model.ViolList)
+                    {
+                        <tr>
+                            <td>@item.Cognome @item.Nome</td>
+                            <td>@item.CodiceFiscale</td>
+                            <td>
+                                @if(item.Verbales.Count > 0){
+
+                                
+                                <table class="table">
+                                    <thead class="">
+                                        <tr>
+                                            <th>TipoViolazione</th>@* DALL ID RICAVIAMO LA VIOLAZIONE *@
+                                            <th>DataViolazione</th>
+                                            <th>IndirizzoViolazione</th>
+                                            <th>Importo Violazione</th>
+                                            <th>Decuramento Punti</th>
+                                            <th>Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var e in item.Verbales)
+                                        {  
+                                            <tr>
+                                                <td>@e.IdviolazioneNavigation.Descrizione</td>
+                                                <td>@e.DataViolazione</td>
+                                                <td>@e.IndirizzoViolazione</td>
+                                                <td>@e.Importo</td>
+                                                <td>@e.DecurtamentoPunti</td>
+                                                <td><a class="btn btn-outline-primary">Notifica!</a></td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                                }
+                            </td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Progetto_BE_S5L5.Services;
+using Progetto_BE_S5L5.ViewModels;
 
 namespace Progetto_BE_S5L5.Controllers
 {
@@ -11,9 +12,11 @@ namespace Progetto_BE_S5L5.Controllers
             _violazioneServices = violazioneServices;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var Lista = await _violazioneServices.GetAll();
+
+            return View(Lista);
         }
     }
 }

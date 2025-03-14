@@ -66,7 +66,7 @@ namespace Progetto_BE_S5L5.Migrations
                     b.HasIndex(new[] { "CodiceFiscale" }, "Unique_CF")
                         .IsUnique();
 
-                    b.ToTable("Anagrafica");
+                    b.ToTable("Anagrafica", (string)null);
                 });
 
             modelBuilder.Entity("Progetto_BE_S5L5.Models.Verbale", b =>
@@ -113,7 +113,7 @@ namespace Progetto_BE_S5L5.Migrations
 
                     b.HasIndex("Idviolazione");
 
-                    b.ToTable("Verbale");
+                    b.ToTable("Verbale", (string)null);
                 });
 
             modelBuilder.Entity("Progetto_BE_S5L5.Models.Violazione", b =>
@@ -131,7 +131,7 @@ namespace Progetto_BE_S5L5.Migrations
                     b.HasKey("Idviolazione")
                         .HasName("PK__Violazio__AF77BD923F484CD4");
 
-                    b.ToTable("Violazione");
+                    b.ToTable("Violazione", (string)null);
                 });
 
             modelBuilder.Entity("Progetto_BE_S5L5.Models.Verbale", b =>
