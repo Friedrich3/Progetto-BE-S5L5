@@ -27,7 +27,6 @@ namespace Progetto_BE_S5L5.Services
                 var Lista = new ViolazioneViewModel() { ViolList = new List<Anagrafica>()};
                 return Lista;
             }
-            
         }
 
     }

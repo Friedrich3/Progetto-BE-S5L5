@@ -31,6 +31,19 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Violazione" asp-action="Index">Violazione</a>
                         </li>
+                        <li>
+                            <div class="dropdown">
+                                <button class="btn btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Filtra Per:
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" asp-controller="Filtro" asp-action="Index" asp-route-query="1">Tot.Verbali per Trasgressore</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Filtro" asp-action="Index" asp-route-query="2">Tot.Punti Decurtati per Trasgressore</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Filtro" asp-action="Index" asp-route-query="3">Tot.Verbali sopra 10 Punti</a></li>
+                                    <li><a class="dropdown-item" asp-controller="Filtro" asp-action="Index" asp-route-query="4">Tot.Verbali importo maggiore di 400€</a></li>
+                                </ul>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
