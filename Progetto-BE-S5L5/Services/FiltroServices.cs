@@ -29,21 +29,16 @@ namespace Progetto_BE_S5L5.Services
             }
         }
 
-        public async Task<FiltroViewModel> TotPuntiPerAnag()
-        {
-            try
-            {
-                var Lista = new FiltroViewModel();
-                Lista.Verbali = await _context.Verbales.ToListAsync();
-                //Lista.TotPunti = await _context.Verbales.
-                return Lista;
-
-            }
-            catch
-            {
-                return new FiltroViewModel() { Verbali = new List<Verbale>() };
-            }
-        }
+        //public async Task<FiltroViewModel> TotPuntiPerAnag()
+        //{
+        //    try
+        //    {
+        //    }
+        //    catch
+        //    {
+        //        return new FiltroViewModel() { Verbali = new List<Verbale>() };
+        //    }
+        //}
 
 
 

@@ -8,9 +8,11 @@ namespace Progetto_BE_S5L5.Services
     public class ViolazioneServices
     {
         private readonly ApplicationDbContext _context;
-        public ViolazioneServices(ApplicationDbContext context)
+        private readonly EmailServices _emailServices;
+        public ViolazioneServices(ApplicationDbContext context, EmailServices emailServices)
         {
             _context = context;
+            _emailServices = emailServices;
         }
 
 
@@ -27,6 +29,13 @@ namespace Progetto_BE_S5L5.Services
                 var Lista = new ViolazioneViewModel() { ViolList = new List<Anagrafica>()};
                 return Lista;
             }
+        }
+
+        public async Task<bool> Contest(Guid verbaleId)
+        {
+            var Verbale = await _context.Verbales.Include(p => p.IdanagraficaNavigation).FirstOrDefaultAsync(p => p.IdVerbale == verbaleId);
+            var isNotified = await _emailServices.SendNotify(Verbale.IdanagraficaNavigation.Cognome, Verbale.IdanagraficaNavigation.Nome, Verbale.IdVerbale);
+            return isNotified;
         }
 
     }

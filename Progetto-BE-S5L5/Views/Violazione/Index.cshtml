@@ -49,7 +49,7 @@
                                                 <td>@e.IndirizzoViolazione</td>
                                                 <td>@e.Importo</td>
                                                 <td>@e.DecurtamentoPunti</td>
-                                                <td><a class="btn btn-outline-primary">Notifica!</a></td>
+                                                <td><a class="btn btn-outline-primary" asp-controller="Violazione" asp-action="SendNotify" asp-route-verbaleId="@e.IdVerbale" >Notifica!</a></td>
 
                                             </tr>
                                         }

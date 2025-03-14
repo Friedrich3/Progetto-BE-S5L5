@@ -7,6 +7,6 @@ namespace Progetto_BE_S5L5.ViewModels
 
         public List<Verbale>? Verbali { get; set; }
 
-        public int TotPunti { get; set; }
+        public List<AnagPerPuntiViewModel> TotPunti { get; set; }
     }
 }

@@ -24,11 +24,11 @@ namespace Progetto_BE_S5L5.Controllers
                     Lista1 = await _filtroServices.TotVerbXAnag();
                     return View("Index", Lista1);
 
-
+                //NON FUNZIONANTE
                 //case "2":
-                //    var Lista2 = new List<AnagPerPuntiViewModel>();
-                //    Lista2 = await _filtroServices.TotPuntiPerAnag();
-                //    return View("TotPuntiPerAnag", Lista2);
+                    
+                //   Lista = await _filtroServices.TotPuntiPerAnag();
+                //    return View("TotPuntiPerAnag", Lista);
 
                 case "3":
 
