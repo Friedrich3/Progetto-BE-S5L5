@@ -20,3 +20,25 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+fieldset {
+    border: 1px solid #ccc !important;
+    padding: 10px !important;
+    margin: 0 0 10px !important;
+    min-width: 0 !important;
+    background: none !important;
+    position: relative !important;
+}
+
+legend {
+    width: auto !important;
+    padding: 0 10px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 5px;
+    font-size: inherit !important;
+    line-height: inherit !important;
+    position: absolute !important;
+    top: -0.8em !important;
+    background: white !important;
+    margin-left: -5px !important;
+}

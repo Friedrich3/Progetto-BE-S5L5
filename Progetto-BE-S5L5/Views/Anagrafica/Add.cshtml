@@ -17,39 +17,44 @@
     }
 
     <div class="row">
+        <div class="col-8">
         <h2>Aggiungi Anagrafica</h2>
+        </div>
+        <div class="col-4 text-end">
+        <button class="btn btn-transparent p-0 m-0 fw-bold text-primary opacity-75" onclick="window.history.back();">Indietro</button>
+        </div>
     </div>
     <hr />
     <div class="row">
         <form asp-controller="Anagrafica" asp-action="AddSave" method="post">
             <div class="mb-3">
                 <label asp-for="CodiceFiscale" class="form-label"></label>
-                <input asp-for="CodiceFiscale" class="form-control" />
+                <input asp-for="CodiceFiscale" class="form-control" required/>
                 
             </div>
             <div class="mb-3">
                 <label asp-for="Cognome" class="form-label"></label>
-                <input asp-for="Cognome" class="form-control" />
+                <input asp-for="Cognome" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label asp-for="Nome" class="form-label"></label>
-                <input asp-for="Nome" class="form-control" />
+                <input asp-for="Nome" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label asp-for="Indirizzo" class="form-label"></label>
-                <input asp-for="Indirizzo" class="form-control" />
+                <input asp-for="Indirizzo" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label asp-for="Citta" class="form-label"></label>
-                <input asp-for="Citta" class="form-control" />
+                <input asp-for="Citta" class="form-control" required />
             </div>
 
             <div class="mb-3">
                 <label asp-for="Cap" class="form-label"></label>
-                <input asp-for="Cap" class="form-control" type="number" />
+                <input asp-for="Cap" class="form-control" type="number" required />
             </div>
 
             <div class="d-flex">
@@ -59,3 +64,4 @@
         </form>
     </div>
 </div>
+

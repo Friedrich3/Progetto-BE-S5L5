@@ -1,5 +1,126 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model VerbaleViewModel;
 @{
+    ViewData["Title"] = "Aggiungi Verbale";
+    var Errore = TempData["Errore"] as string;
+    var Violazioni = ViewBag.Violazioni as List<Violazione>;
 }
+
+
+
+<div class="container mb-5">
+    @if (Errore != null)
+    {
+
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <strong>ERROR 404!</strong><span>@Errore</span>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-8">
+            <h2>Registro Verbale</h2>
+        </div>
+        <div class="col-4 text-end">
+            <button class="btn btn-transparent p-0 m-0 fw-bold text-primary opacity-75" onclick="window.history.back();">Indietro</button>
+        </div>
+    </div>
+    <hr class="pb-3"/>
+    <div class="row">
+        <form asp-controller="Verbale" asp-action="AddVerbale" method="post" >
+            <fieldset class="mb-5">
+            <legend class="fw-bold">Anagrafica</legend>
+            <div class="row pt-3">
+                    <div class="mb-3 col-3">
+                        <label asp-for="@Model.Anagrafica.Cognome" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.Cognome" class="form-control" required />
+
+                    </div>
+                    <div class="mb-3 col-3">
+                        <label asp-for="@Model.Anagrafica.Nome" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.Nome" class="form-control" required />
+                    </div>
+
+                    <div class="mb-3 col-3">
+                        <label asp-for="@Model.Anagrafica.CodiceFiscale" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.CodiceFiscale" class="form-control" required />
+                    </div>
+            </div>
+            
+            <div class="row">
+                    <div class="mb-3 col-6">
+                        <label asp-for="@Model.Anagrafica.Indirizzo" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.Indirizzo" class="form-control" required />
+                    </div>
+                    <div class="mb-3 col-2">
+                        <label asp-for="@Model.Anagrafica.Citta" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.Citta" class="form-control" required />
+                    </div>
+                    <div class="mb-3 col-2">
+                        <label asp-for="@Model.Anagrafica.Cap" class="form-label"></label>
+                        <input asp-for="@Model.Anagrafica.Cap" class="form-control" type="number" required />
+                    </div>
+
+            </div>
+            
+            </fieldset>
+
+            <fieldset class="mb-5">
+                <legend class="fw-bold">Verbale</legend>
+                <div class="row pt-3">
+					<div class="mb-3 col-2">
+						<label asp-for="@Model.DataViolazione" class="form-label"></label>
+						<input asp-for="@Model.DataViolazione" class="form-control" type="date" required />
+					</div>
+
+
+					<div class="mb-3 col-10">
+						<label asp-for="@Model.IndirizzoViolazione" class="form-label"></label>
+						<input asp-for="@Model.IndirizzoViolazione" class="form-control" required />
+					</div>
+				</div>
+                <div class="row pt-3">
+                    <div class="mb-3 col-4">
+                    <label for="selectId" class="form-label">Tipo Violazione</label>
+                    <select id="selectId" class="form-select " asp-for="@Model.Idviolazione">
+                        <option selected>Seleziona una Violazione</option>
+                            @if (Violazioni != null){
+                                foreach(var item in Violazioni){
+                                    <option value="@item.Idviolazione">@item.Descrizione</option>
+                                }
+                            }
+                    </select>
+                    </div>
+                        <div class="mb-3 col-2">
+                            <label asp-for="@Model.Importo" class="form-label"></label>
+                        <input asp-for="@Model.Importo" type="number" step="0.01" min="1.00" class="form-control" required />
+                        </div>
+                    <div class="mb-3 col-2">
+                        <label asp-for="@Model.DecurtamentoPunti" class="form-label"></label>
+                        <input asp-for="@Model.DecurtamentoPunti" type="number" min="0" max="20" class="form-control" required />
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="mb-3 col-2">
+                        <label asp-for="@Model.DataTrascrizioneVerbale" class="form-label"></label>
+                        <input asp-for="@Model.DataTrascrizioneVerbale" class="form-control" type="date" required />
+                    </div>
+
+
+                    <div class="mb-3 col-6">
+                        <label asp-for="@Model.NominativoAgente" class="form-label"></label>
+                        <input asp-for="@Model.NominativoAgente" class="form-control" required />
+                    </div>
+                </div>
+              
+            </fieldset>
+
+
+            <div class="d-flex">
+                <button type="submit" class="btn btn-success ">Aggiungi</button>
+                <button type="reset" class="btn btn-secondary ms-auto">ResetForm</button>
+            </div>
+        </form>
+    </div>
+</div>
+
