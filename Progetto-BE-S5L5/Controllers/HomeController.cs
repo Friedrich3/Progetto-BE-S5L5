@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Progetto_BE_S5L5.Models;
+using Progetto_BE_S5L5.ViewModels;
 
 namespace Progetto_BE_S5L5.Controllers
 {

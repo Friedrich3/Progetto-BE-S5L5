@@ -1,9 +1,20 @@
+using Microsoft.EntityFrameworkCore;
+using Progetto_BE_S5L5.Data;
+using Progetto_BE_S5L5.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddScoped<AnagraficaServices>();
+builder.Services.AddScoped<VerbaleServices>();
+builder.Services.AddScoped<ViolazioneServices>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
