@@ -12,6 +12,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
 builder.Services.AddScoped<AnagraficaServices>();
 builder.Services.AddScoped<VerbaleServices>();
 builder.Services.AddScoped<ViolazioneServices>();
+builder.Services.AddScoped<FiltroServices>();
 
 var app = builder.Build();
 
