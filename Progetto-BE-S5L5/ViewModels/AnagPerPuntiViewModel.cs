@@ -2,11 +2,9 @@
 
 namespace Progetto_BE_S5L5.ViewModels
 {
-    public class FiltroViewModel
+    public class AnagPerPuntiViewModel
     {
-
-        public List<Verbale>? Verbali { get; set; }
-
+        public Anagrafica Utente { get; set; }
         public int TotPunti { get; set; }
     }
 }

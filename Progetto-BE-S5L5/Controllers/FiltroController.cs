@@ -25,10 +25,10 @@ namespace Progetto_BE_S5L5.Controllers
                     return View("Index", Lista1);
 
 
-                case "2":
-
-                    Lista = await _filtroServices.TotPuntiPerAnag();
-                    return View("TotPuntiPerAnag", Lista);
+                //case "2":
+                //    var Lista2 = new List<AnagPerPuntiViewModel>();
+                //    Lista2 = await _filtroServices.TotPuntiPerAnag();
+                //    return View("TotPuntiPerAnag", Lista2);
 
                 case "3":
 
@@ -40,6 +40,7 @@ namespace Progetto_BE_S5L5.Controllers
 
                     Lista = await _filtroServices.TotCostVerbOver400();
                     return View("TotCostVerbOver400", Lista);
+                    
 
 
 

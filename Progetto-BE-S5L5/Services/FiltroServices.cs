@@ -35,6 +35,7 @@ namespace Progetto_BE_S5L5.Services
             {
                 var Lista = new FiltroViewModel();
                 Lista.Verbali = await _context.Verbales.ToListAsync();
+                //Lista.TotPunti = await _context.Verbales.
                 return Lista;
 
             }
@@ -51,7 +52,7 @@ namespace Progetto_BE_S5L5.Services
             try
             {
                 var Lista = new FiltroViewModel();
-                Lista.Verbali = await _context.Verbales.Where(p=> p.DecurtamentoPunti >10).ToListAsync();
+                Lista.Verbali = await _context.Verbales.Where(p=> p.DecurtamentoPunti >10).Include(p=> p.IdanagraficaNavigation).Include(p=>p.IdviolazioneNavigation).ToListAsync();
                 return Lista;
             }
             catch
@@ -65,7 +66,7 @@ namespace Progetto_BE_S5L5.Services
             try
             {
                 var Lista = new FiltroViewModel();
-                Lista.Verbali = await _context.Verbales.Where(p => p.Importo >= 400).ToListAsync();
+                Lista.Verbali = await _context.Verbales.Where(p => p.Importo >= 400).Include(p => p.IdanagraficaNavigation).Include(p => p.IdviolazioneNavigation).ToListAsync();
                 return Lista;
             }
             catch

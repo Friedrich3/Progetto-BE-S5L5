@@ -1,0 +1,43 @@
+﻿@model FiltroViewModel
+
+@{
+    ViewData["Title"] = "Violazioni Filtro";
+}
+
+<div class="container p-0">
+    <div class="d-flex justify-content-between">
+        <h2>Violazioni sopra i 10 punti</h2>
+    </div>
+    <hr />
+    <div class="row">
+        <table class="table table-striped table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>Cognome</th>
+                    <th>Nome</th>
+                    <th>Codice Fiscale</th>
+                    <th>Tipo Violazione</th>
+                    <th>DataViolazione</th>
+                    <th>Punti Decurtati</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Verbali != null && Model.Verbali.Any())
+                {
+                    foreach (var item in Model.Verbali)
+                    {
+                        <tr>
+                            <td>@item.IdanagraficaNavigation.Cognome</td>
+                            <td>@item.IdanagraficaNavigation.Nome</td>
+                            <td>@item.IdanagraficaNavigation.CodiceFiscale</td>
+                            <td>@item.IdviolazioneNavigation.Descrizione</td>
+                            <td>@item.DataViolazione</td>
+                            <td>@item.DecurtamentoPunti</td>
+
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
