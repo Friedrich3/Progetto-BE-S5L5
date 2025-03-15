@@ -37,6 +37,38 @@ namespace Progetto_BE_S5L5.Controllers
 
 
             return RedirectToAction("Index");
+        } 
+        
+        public async Task<IActionResult> Edit(Guid verbaleId)
+        {
+            var verbale = await _verbaleServices.FindEdit(verbaleId);
+            if (verbale == null)
+            {
+                TempData["Error"] = "Errore 404 non e' stato trovato nessun verbale corrispondente";
+                return RedirectToAction("Index");
+            }
+
+            ViewBag.Violazioni = await _verbaleServices.GetViolation();
+
+            return View(verbale);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditSave(EditVerbaleViewModel editViewModel, Guid verbaleId)
+        {
+            if (!ModelState.IsValid)
+            {
+                TempData["Error"] = "I dati inseriti non sono Validi";
+                return RedirectToAction("Index");
+            }
+            var isEdited = await _verbaleServices.SaveEdit(editViewModel, verbaleId);
+            if (!isEdited)
+            {
+                TempData["Error"] = "Errore nella modifica del Verbale";
+            }
+
+
+            return RedirectToAction("Index", "Violazione");
         }
     }
 }

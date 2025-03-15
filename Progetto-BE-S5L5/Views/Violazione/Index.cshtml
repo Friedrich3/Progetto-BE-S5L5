@@ -52,8 +52,10 @@
 													<td>@e.Importo</td>
 													<td>@e.DecurtamentoPunti</td>
 													<td>
+														@* PER CAMBIARE RUOLO -> ViolazioneServices.cs -> riga 32 *@
 														@if (role == "admin")
 														{
+															<a class="btn btn-outline-warning" asp-controller="Verbale" asp-action="Edit" asp-route-verbaleId="@e.IdVerbale"><i class="bi bi-tools"></i></a>
 															<a class="btn btn-outline-danger" asp-controller="Violazione" asp-action="DeleteViol" asp-route-verbaleId="@e.IdVerbale"><i class="bi bi-trash3"></i></a>
 														}
 														else

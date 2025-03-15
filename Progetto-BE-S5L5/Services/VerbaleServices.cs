@@ -81,7 +81,7 @@ namespace Progetto_BE_S5L5.Services
                 var user = new Anagrafica()
                 {
                     Idanagrafica = Guid.NewGuid(),
-                    Cognome = verbViewModel.Anagrafica.Cognome,
+                    Cognome = verbViewModel.Anagrafica!.Cognome,
                     Nome = verbViewModel.Anagrafica.Nome,
                     Indirizzo = verbViewModel.Anagrafica.Indirizzo,
                     Citta = verbViewModel.Anagrafica.Citta,
@@ -104,10 +104,45 @@ namespace Progetto_BE_S5L5.Services
                 _context.Verbales.Add(verbale);
                 return await SaveAsync();
             }
-            
+        }
 
+        public async Task<EditVerbaleViewModel>FindEdit (Guid verbaleId)
+        {
+            var getVerbale = await _context.Verbales.Include(p => p.IdanagraficaNavigation).FirstOrDefaultAsync(p => p.IdVerbale == verbaleId);    
+            if (getVerbale == null)
+            {
+                return null;
+            }
+            var verbale = new EditVerbaleViewModel()
+            {
+                IdVerbale = verbaleId,
+                DataViolazione = getVerbale.DataViolazione,
+                IndirizzoViolazione = getVerbale.IndirizzoViolazione,
+                NominativoAgente= getVerbale.NominativoAgente,
+                DataTrascrizioneVerbale = getVerbale.DataTrascrizioneVerbale,
+                Importo = getVerbale.Importo,
+                DecurtamentoPunti = getVerbale.DecurtamentoPunti,
+                Idviolazione = getVerbale.Idviolazione,
+                Anagrafica = getVerbale.IdanagraficaNavigation,
+            };
+            return verbale;
+        }
 
-            
+        public async Task<bool> SaveEdit (EditVerbaleViewModel editViewModel, Guid verbaleId)
+        {
+            var getVerbale = await _context.Verbales.Include(p => p.IdanagraficaNavigation).FirstOrDefaultAsync(p => p.IdVerbale == verbaleId);
+            if (getVerbale == null)
+            {
+                return false;
+            }
+            getVerbale.DataViolazione = editViewModel.DataViolazione;
+            getVerbale.IndirizzoViolazione = editViewModel.IndirizzoViolazione;
+            getVerbale.Idviolazione = editViewModel.Idviolazione;
+            getVerbale.Importo = editViewModel.Importo;
+            getVerbale.DecurtamentoPunti = editViewModel.DecurtamentoPunti;
+            getVerbale.DataTrascrizioneVerbale = editViewModel.DataTrascrizioneVerbale;
+            getVerbale.NominativoAgente = editViewModel.NominativoAgente;
+            return await SaveAsync();
         }
 
     }
